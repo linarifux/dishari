@@ -8,6 +8,7 @@ import PackagesPage from './pages/PackagesPage';
 import PackageDetailPage from './pages/PackageDetailPage';
 import Footer from './components/Footer';
 import ContactPage from './pages/ContactPage';
+import SignUpPage from './pages/SignupPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/packages" element={<PackagesPage />} />
         <Route path="/packages/:id" element={<PackageDetailPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
       </Routes>
       <Footer />
     </>

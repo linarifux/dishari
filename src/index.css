@@ -32,3 +32,7 @@ button{
 .btn-gradient:hover {
   background-position: right center;
 }
+
+.custom-form-input {
+  padding: 0.75rem 2rem !important;
+}

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-
 // --- Helper Components ---
 
 // Icon Component for inline SVGs
@@ -18,8 +17,8 @@ const Icon = ({ name, ...props }) => {
 
 // --- Mock Data for the Slider ---
 const tourData = [
-  { id: 0, title: "The Himalayas Mountain", description: "We organize professional adventures in the most dangerous corners of our planet. People change after our tours. Forever.", image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop" },
-  { id: 1, title: "The Andes Expedition", description: "Traverse the longest continental mountain range in the world, a journey of discovery and endurance.", image: "https://images.unsplash.com/photo-1500534623283-312aade485b7?q=80&w=1974&auto=format&fit=crop" },
+  { id: 0, title: "The Himalayas Mountain", description: "We organize professional adventures in the most dangerous corners of our planet.", image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop" },
+  { id: 1, title: "The Andes Expedition", description: "Traverse the longest continental mountain range in the world, a journey of discovery.", image: "https://images.unsplash.com/photo-1500534623283-312aade485b7?q=80&w=1974&auto=format&fit=crop" },
   { id: 2, title: "The Alps Discovery", description: "Experience the heart of Europe's most famous mountains, from serene valleys to iconic peaks.", image: "https://cparici.com/wp-content/uploads/2024/08/Alpes-vue-sur-le-Mont-Blanc.jpg" },
 ];
 
@@ -60,86 +59,98 @@ const Hero = () => {
   const title = "FIND YOUR TRAIL";
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col justify-between items-center overflow-hidden p-4 sm:p-8">
+    <section id="home" className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden p-4 sm:p-8">
       {/* Background Image & Overlay */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('./images/hero-background.png')` }} />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-slate-900/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-slate-950/30" />
       </div>
 
-      {/* Main Title */}
-      <div className="relative z-10 w-full flex-grow flex items-center justify-center">
-        <motion.h1
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold text-white text-center uppercase tracking-wider"
-          style={{ textShadow: "2px 2px 10px rgba(0,0,0,0.5)" }}
-        >
-          {title.split("").map((char, index) => (
-            <motion.span key={index} variants={childVariants} className="inline-block">
-              {char === " " ? "\u00A0" : char}
-            </motion.span>
-          ))}
-        </motion.h1>
-      </div>
-
-      {/* Bottom Content Area */}
-      <div className="relative z-10 w-full container mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-end gap-8">
-        {/* Stat Cards */}
-        <motion.div
-            variants={statCardContainerVariants}
+      {/* Main Content Wrapper */}
+      <div className="relative z-10 w-full container mx-auto max-w-7xl flex flex-col justify-between h-full pt-24 pb-8">
+        {/* Main Title */}
+        <div className="flex-grow flex items-center justify-center">
+          <motion.h1
+            variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="flex flex-wrap justify-center md:justify-start gap-4"
-        >
-          <motion.div variants={statCardVariants} className="stat-card glass-card w-auto h-32 flex flex-col justify-center items-center p-4">
-            <Icon name="TrendingUp" className="w-8 h-8 text-green-400 mb-2" />
-            <p className="text-2xl font-bold text-white">10541+</p>
-            <p className="text-sm text-slate-500">Satisfied Clients</p>
-          </motion.div>
-          <motion.div variants={statCardVariants} className="stat-card glass-card w-auto h-32 flex flex-col justify-center items-center p-4">
-            <Icon name="Camp" className="w-8 h-8 text-yellow-400 mb-2" />
-            <p className="text-2xl font-bold text-white">524+</p>
-            <p className="text-sm text-slate-500">Camps Organized</p>
-          </motion.div>
-          <motion.div variants={statCardVariants} className="stat-card glass-card w-auto h-32 flex flex-col justify-center items-center p-4">
-            <Icon name="ShieldAlert" className="w-8 h-8 text-red-400 mb-2" />
-            <p className="text-2xl font-bold text-white">0</p>
-            <p className="text-sm text-slate-500">Incidents</p>
-          </motion.div>
-        </motion.div>
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold text-white text-center uppercase tracking-wider"
+            style={{ textShadow: "2px 2px 10px rgba(0,0,0,0.5)" }}
+          >
+            {title.split("").map((char, index) => (
+              <motion.span key={index} variants={childVariants} className="inline-block">
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </motion.h1>
+        </div>
 
-        {/* Tour Slider Card */}
-        <motion.div 
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 1 }}
-            className="flex-shrink-0 w-full md:w-auto"
-        >
-            <AnimatePresence mode="wait">
-                <motion.div
-                    key={currentIndex}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-4 max-w-lg mx-auto md:mx-0"
-                >
-                    <img src={currentTour.image} alt={currentTour.title} className="w-32 h-32 object-cover rounded-lg flex-shrink-0" />
-                    <div className="flex-grow">
-                        <h3 className="font-bold text-lg text-white">{currentTour.title}</h3>
-                        <p className="text-sm text-slate-500 mt-1 mb-3">{currentTour.description}</p>
-                    </div>
-                    <button onClick={handleNext} className="bg-white/10 hover:bg-white/20 transition-colors rounded-full p-3 flex-shrink-0 self-start">
-                        <Icon name="ArrowRight" className="w-6 h-6" />
-                    </button>
-                </motion.div>
-            </AnimatePresence>
-        </motion.div>
+        {/* Bottom Content Area */}
+        <div className="w-full flex flex-col md:flex-row justify-between items-center md:items-end gap-8">
+          {/* Stat Cards */}
+          <motion.div
+              variants={statCardContainerVariants}
+              initial="hidden"
+              animate="visible"
+              className="w-full md:w-auto flex flex-row justify-center md:justify-start gap-4"
+          >
+            <motion.div variants={statCardVariants} className="stat-card glass-card w-32 h-32 flex flex-col justify-center items-center p-4">
+              <Icon name="TrendingUp" className="w-8 h-8 text-green-400 mb-2" />
+              <p className="text-xl font-bold text-white">10k+</p>
+              <p className="text-xs text-slate-400">Clients</p>
+            </motion.div>
+            <motion.div variants={statCardVariants} className="stat-card glass-card w-32 h-32 flex flex-col justify-center items-center p-4">
+              <Icon name="Camp" className="w-8 h-8 text-yellow-400 mb-2" />
+              <p className="text-xl font-bold text-white">500+</p>
+              <p className="text-xs text-slate-400">Camps</p>
+            </motion.div>
+            <motion.div variants={statCardVariants} className="stat-card glass-card w-32 h-32 flex flex-col justify-center items-center p-4">
+              <Icon name="ShieldAlert" className="w-8 h-8 text-red-400 mb-2" />
+              <p className="text-xl font-bold text-white">0</p>
+              <p className="text-xs text-slate-400">Incidents</p>
+            </motion.div>
+          </motion.div>
+
+          {/* Tour Slider Card */}
+          <motion.div 
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="flex-shrink-0 w-full md:w-auto"
+          >
+              <AnimatePresence mode="wait">
+                  <motion.div
+                      key={currentIndex}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="glass-card rounded-2xl p-4 flex items-center gap-4 max-w-lg mx-auto md:mx-0"
+                  >
+                      <img src={currentTour.image} alt={currentTour.title} className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg flex-shrink-0" />
+                      <div className="flex-grow">
+                          <h3 className="font-bold text-md sm:text-lg text-white">{currentTour.title}</h3>
+                          <p className="text-sm text-slate-400 mt-1 mb-3">{currentTour.description}</p>
+                      </div>
+                      <button onClick={handleNext} className="bg-white/10 hover:bg-white/20 transition-colors rounded-full p-3 flex-shrink-0 self-start">
+                          <Icon name="ArrowRight" className="w-6 h-6 text-white" />
+                      </button>
+                  </motion.div>
+              </AnimatePresence>
+          </motion.div>
+        </div>
       </div>
+      <style>{`
+        .glass-card {
+          background: rgba(22, 30, 46, 0.7);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+      `}</style>
     </section>
   );
 };
 
 export default Hero;
+
