@@ -59,7 +59,7 @@ const TestimonialCarousel = () => {
         className="container mx-auto max-w-7xl px-4"
       >
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center md:text-left mb-12">
           <motion.p variants={textVariants} className="text-indigo-400 font-semibold mb-2 uppercase tracking-wide">
             REVIEW
           </motion.p>
