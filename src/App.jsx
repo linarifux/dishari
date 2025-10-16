@@ -9,11 +9,13 @@ import PackageDetailPage from './pages/PackageDetailPage';
 import Footer from './components/Footer';
 import ContactPage from './pages/ContactPage';
 import SignUpPage from './pages/SignupPage';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <>
       <Navbar />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />

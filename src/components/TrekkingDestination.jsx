@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Icon = ({ name, ...props }) => {
   const icons = {
     ArrowLeft: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5" /><path d="m12 19-7-7 7-7" /></svg>,
-    ArrowRight: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>, // FIXED: Correct SVG path
+    ArrowRight: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>,
     DollarSign: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" x2="12" y1="2" y2="22" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>,
     Clock: (p) => <svg {...p} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>,
   };
@@ -37,23 +37,19 @@ const bookButtonVariants = { hidden: { opacity: 0, y: 10 }, visible: { opacity: 
 
 
 // --- Individual Trekking Card Component ---
-const TrekkingCard = ({ destination, scrollXProgress }) => {
-    // Parallax effect for the image
-    const x = useTransform(scrollXProgress, [0, 1], ["-20%", "20%"]);
-
+const TrekkingCard = ({ destination }) => {
     return (
         <motion.div
           variants={cardVariants}
-          className="flex-none w-80 md:w-96 snap-center bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg group py-12"
+          className="flex-none w-[80vw] sm:w-80 md:w-96 snap-center bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg group"
           whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
         >
           <div className="relative h-48 w-full overflow-hidden">
             <motion.img
               src={destination.image}
               alt={destination.name}
-              className="w-full h-full relative"
-              style={{ x }} // Apply parallax effect
-              whileHover={{ scale: 1.5 }}
+              className="w-full h-full object-cover"
+              whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.3 }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
@@ -88,11 +84,10 @@ const TrekkingCard = ({ destination, scrollXProgress }) => {
 // --- TrekkingDestination Component ---
 const TrekkingDestination = () => {
   const scrollRef = useRef(null);
-  const { scrollXProgress } = useScroll({ container: scrollRef });
   
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = trekkingDestinations.length; 
-  const scrollAmount = 380; // Approximate width of a card + gap
+  const scrollAmount = 352; // w-80 (320px) + space-x-8 (32px)
 
   const scrollLeft = () => {
     if (scrollRef.current) {
@@ -115,12 +110,12 @@ const TrekkingDestination = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="container mx-auto max-w-7xl px-4"
+        className="container mx-auto max-w-7xl"
       >
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
-          <div>
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 px-4">
+          <div className="text-center md:text-left">
             <motion.p variants={subtitleVariants} className="text-indigo-400 font-semibold mb-2 uppercase tracking-wide">POPULARLY</motion.p>
-            <motion.h2 variants={titleVariants} className="text-4xl md:text-5xl font-bold leading-tight">Most Popular<br />Trekking Destination</motion.h2>
+            <motion.h2 variants={titleVariants} className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">Most Popular<br />Trekking Destination</motion.h2>
           </div>
           <motion.div variants={navigationVariants} className="flex items-center space-x-4 mt-8 md:mt-0">
             <span className="text-xl font-medium">{String(currentPage).padStart(2, '0')}</span>
@@ -134,10 +129,10 @@ const TrekkingDestination = () => {
         <motion.div
           ref={scrollRef}
           variants={sectionVariants}
-          className="flex space-x-8 overflow-x-auto scrollbar-hide py-4 snap-x snap-mandatory"
+          className="flex space-x-4 md:space-x-8 overflow-x-auto scrollbar-hide py-4 snap-x snap-mandatory px-4 md:px-8"
         >
           {trekkingDestinations.map((destination) => (
-            <TrekkingCard key={destination.id} destination={destination} scrollXProgress={scrollXProgress} />
+            <TrekkingCard key={destination.id} destination={destination} />
           ))}
         </motion.div>
       </motion.div>
@@ -148,3 +143,4 @@ const TrekkingDestination = () => {
 };
 
 export default TrekkingDestination;
+

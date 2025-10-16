@@ -51,7 +51,7 @@ const AboutUs = () => {
         className="container mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-12 items-center"
       >
         {/* Text Content */}
-        <motion.div variants={textContentVariants} className="text-left">
+        <motion.div variants={textContentVariants} className="text-center md:text-left">
           <p className="text-indigo-400 font-semibold mb-2 uppercase tracking-wide">
             ABOUT US
           </p>

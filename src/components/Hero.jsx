@@ -67,7 +67,7 @@ const Hero = () => {
       </div>
 
       {/* Main Content Wrapper */}
-      <div className="relative z-10 w-full container mx-auto max-w-7xl flex flex-col justify-between h-full pt-24 pb-8">
+      <div className="relative z-10 w-full container mx-auto max-w-7xl flex flex-col justify-between lg:gap-60 h-full pt-24 pb-8">
         {/* Main Title */}
         <div className="flex-grow flex items-center justify-center">
           <motion.h1
@@ -132,7 +132,7 @@ const Hero = () => {
                           <h3 className="font-bold text-md sm:text-lg text-white">{currentTour.title}</h3>
                           <p className="text-sm text-slate-400 mt-1 mb-3">{currentTour.description}</p>
                       </div>
-                      <button onClick={handleNext} className="bg-white/10 hover:bg-white/20 transition-colors rounded-full p-3 flex-shrink-0 self-start">
+                      <button onClick={handleNext} className="bg-white/10 hover:bg-white/20 transition-colors rounded-full p-3 flex-shrink-0 self-center">
                           <Icon name="ArrowRight" className="w-6 h-6 text-white" />
                       </button>
                   </motion.div>

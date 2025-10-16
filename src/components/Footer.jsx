@@ -31,7 +31,7 @@ const itemVariants = {
 // --- Footer Component ---
 const Footer = () => {
   return (
-    <footer className="relative bg-slate-950 text-white pt-24 pb-48 md:pb-64 overflow-hidden">
+    <footer className="relative bg-slate-950 text-white pt-20 md:pt-24 pb-48 md:pb-64 overflow-hidden">
       <div className="container mx-auto max-w-7xl px-4 relative z-10">
         <motion.div
           variants={sectionVariants}
@@ -40,26 +40,26 @@ const Footer = () => {
           viewport={{ once: true, amount: 0.2 }}
         >
           {/* Top Contact Section */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 pb-16 border-b border-slate-800">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 md:pb-16 border-b border-slate-800">
             <motion.div variants={itemVariants} className="flex items-center gap-4">
-              <div className="p-3 bg-slate-800/50 rounded-full text-indigo-400"><Icon name="Email" /></div>
+              <div className="p-3 bg-slate-800/50 rounded-full text-indigo-400 flex-shrink-0"><Icon name="Email" /></div>
               <div>
                 <p className="font-bold">Email</p>
-                <a href="mailto:contact@trailmakers.com" className="text-slate-400 hover:text-white transition-colors">contact@trailmakers.com</a>
+                <a href="mailto:contact@trailmakers.com" className="text-slate-400 hover:text-white transition-colors text-sm">contact@trailmakers.com</a>
               </div>
             </motion.div>
             <motion.div variants={itemVariants} className="flex items-center gap-4">
-              <div className="p-3 bg-slate-800/50 rounded-full text-indigo-400"><Icon name="Phone" /></div>
+              <div className="p-3 bg-slate-800/50 rounded-full text-indigo-400 flex-shrink-0"><Icon name="Phone" /></div>
               <div>
                 <p className="font-bold">Call us</p>
-                <a href="tel:+412541657425" className="text-slate-400 hover:text-white transition-colors">+41 2541 6574 25</a>
+                <a href="tel:+412541657425" className="text-slate-400 hover:text-white transition-colors text-sm">+41 2541 6574 25</a>
               </div>
             </motion.div>
             <motion.div variants={itemVariants} className="flex items-center gap-4">
-              <div className="p-3 bg-slate-800/50 rounded-full text-indigo-400"><Icon name="Location" /></div>
+              <div className="p-3 bg-slate-800/50 rounded-full text-indigo-400 flex-shrink-0"><Icon name="Location" /></div>
               <div>
                 <p className="font-bold">Head Office</p>
-                <p className="text-slate-400">E 7th, St North Little Rock AR 72114-4973, USA</p>
+                <p className="text-slate-400 text-sm">E 7th, St North Little Rock AR 72114-4973, USA</p>
               </div>
             </motion.div>
             <motion.div variants={itemVariants} className="relative hidden lg:block">
@@ -76,10 +76,10 @@ const Footer = () => {
           </div>
 
           {/* Main Footer Content */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 pt-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-12 md:pt-16">
             <motion.div variants={itemVariants}>
               <h3 className="text-xl font-bold mb-4">About Us</h3>
-              <p className="text-slate-400 mb-6 leading-relaxed">Trail Makers seamlessly connects millions of travelers to memorable experiences, a variety of transportation options.</p>
+              <p className="text-slate-400 mb-6 leading-relaxed">Trail Makers seamlessly connects millions of travelers to memorable experiences.</p>
               <div className="flex space-x-4">
                 <a href="#" className="p-2 bg-slate-800/50 rounded-full hover:bg-indigo-600 transition-colors"><Icon name="Facebook" /></a>
                 <a href="#" className="p-2 bg-slate-800/50 rounded-full hover:bg-indigo-600 transition-colors"><Icon name="Twitter" /></a>
@@ -97,7 +97,7 @@ const Footer = () => {
               </ul>
             </motion.div>
             <motion.div variants={itemVariants}>
-              <h3 className="text-xl font-bold mb-4">&nbsp;</h3> {/* Spacer for alignment */}
+              <h3 className="text-xl font-bold mb-4 hidden md:block">&nbsp;</h3> {/* Spacer for alignment */}
               <ul className="space-y-3 text-slate-400">
                 <li><a href="#" className="hover:text-white transition-colors">Need a career?</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Latest News & Blog</a></li>
@@ -120,7 +120,7 @@ const Footer = () => {
       </div>
       
       {/* Bottom SVG Illustration */}
-      <div className="absolute bottom-0 left-0 w-full h-[300px] md:h-[400px]" style={{ pointerEvents: 'none' }}>
+      <div className="absolute bottom-0 left-0 w-full h-[250px] md:h-[400px]" style={{ pointerEvents: 'none' }}>
         <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 400">
           {/* Mountains */}
           <path d="M0 400 L0 250 Q 180 180, 360 250 T 720 250 T 1080 250 T 1440 250 L 1440 400 Z" fill="#374151" />

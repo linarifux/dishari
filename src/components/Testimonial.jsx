@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 // --- Icon Components ---
 const Icon = ({ name, ...props }) => {
@@ -16,27 +17,9 @@ const Icon = ({ name, ...props }) => {
 
 // --- Mock Data for Testimonials ---
 const testimonialsData = [
-  {
-    id: 1,
-    name: "Eva Chance",
-    review: "The tours are great. I had been really enjoying with my family! The team is very professional and taking care of the customers. Will surely recommend!",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=2070&auto=format&fit=crop",
-  },
-  {
-    id: 2,
-    name: "Johnathan Smith",
-    review: "An unforgettable adventure from start to finish. The guides were knowledgeable and made sure we were safe and having a great time. The views were breathtaking.",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop",
-  },
-  {
-    id: 3,
-    name: "Alisha Williams",
-    review: "I was nervous about my first big trek, but Trail Makers made everything so easy and accessible. The pre-trip support was fantastic. Highly recommended for beginners!",
-    rating: 5,
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop",
-  },
+  { id: 1, name: "Eva Chance", review: "The tours are great. I had been really enjoying with my family! The team is very professional and taking care of the customers. Will surely recommend!", rating: 5, image: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=2070&auto=format&fit=crop" },
+  { id: 2, name: "Johnathan Smith", review: "An unforgettable adventure from start to finish. The guides were knowledgeable and made sure we were safe and having a great time. The views were breathtaking.", rating: 5, image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop" },
+  { id: 3, name: "Alisha Williams", review: "I was nervous about my first big trek, but Trail Makers made everything so easy and accessible. The pre-trip support was fantastic. Highly recommended for beginners!", rating: 5, image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop" },
 ];
 
 // --- Framer Motion Variants ---
@@ -88,7 +71,7 @@ const TestimonialCarousel = () => {
         {/* Carousel Grid */}
         <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
           {/* Left Column: Client Image */}
-          <div className="relative h-96 md:h-[500px] w-full">
+          <div className="relative h-80 sm:h-96 md:h-[500px] w-full">
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeTestimonial.id}
@@ -115,13 +98,13 @@ const TestimonialCarousel = () => {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                 >
-                  <p className="text-lg md:text-xl italic text-slate-300 mb-6">
+                  <p className="text-lg md:text-xl text-center md:text-left italic text-slate-300 mb-6">
                     "{activeTestimonial.review}"
                   </p>
-                  <div className="flex text-yellow-400 mb-2">
+                  <div className="flex text-yellow-400 mb-2 justify-center md:justify-start">
                     {Array(activeTestimonial.rating).fill(0).map((_, i) => <Icon key={i} name="Star" />)}
                   </div>
-                  <p className="font-bold text-indigo-300 text-lg">{activeTestimonial.name}</p>
+                  <p className="font-bold text-indigo-300 text-lg text-center md:text-left">{activeTestimonial.name}</p>
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -130,11 +113,11 @@ const TestimonialCarousel = () => {
             <div className="mt-8">
               {/* Coupon Codes */}
               <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 flex flex-col sm:flex-row gap-4 items-center mb-6">
-                  <div className="text-center sm:text-left">
+                  <div className="text-center sm:text-left flex-grow">
                       <p className="font-bold text-lg text-yellow-400">Monsoon Discount</p>
                       <p className="text-sm text-slate-400">Use code for 50% off on your next trek!</p>
                   </div>
-                  <div className="relative bg-slate-700 text-yellow-300 font-mono text-lg py-2 px-6 rounded-lg border-2 border-dashed border-slate-500">
+                  <div className="relative bg-slate-700 text-yellow-300 font-mono text-lg py-2 px-6 rounded-lg border-2 border-dashed border-slate-500 flex-shrink-0">
                     <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-slate-950 rounded-full"></div>
                     <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-slate-950 rounded-full"></div>
                     MONSOON50
@@ -157,8 +140,18 @@ const TestimonialCarousel = () => {
           </div>
         </div>
       </motion.div>
+      <style>{`
+        .glass-card {
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 9999px;
+        }
+      `}</style>
     </section>
   );
 };
 
 export default TestimonialCarousel;
+
